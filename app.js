@@ -11,6 +11,7 @@ const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+// import MongoStore from "connect-mongo";
 ///////
 const flash = require("connect-flash");
 const passport = require("passport");
@@ -46,6 +47,7 @@ store.on("error", () => {
 });
 
 const sessionOptions = {
+  store: store,
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,

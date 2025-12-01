@@ -1,0 +1,183 @@
+<style>
+  .fa-solid {
+    font-size: 1.2rem;
+    /* padding: 2px; */
+  }
+
+  .nav-search-container,
+  .navsearchbox {
+    border: 1px solid black;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 1;
+    padding: 5px;
+
+    background-color: white !important;
+  }
+
+  @media screen and (min-width: 120px) and (max-width: 767.2px) {
+    .nav-search-container {
+      display: none;
+    }
+    #navbarNavAltMarkup {
+      background-color: aliceblue;
+    }
+  }
+
+  @media screen and (min-width: 120px) and (max-width: 425.2px) {
+    .nav-search-container {
+      display: none;
+    }
+    #navbarNavAltMarkup {
+      background-color: aliceblue;
+    }
+
+    .search-inp {
+      width: 60% !important;
+    }
+    /* .search-inp::placeholder {
+      content: none !important;
+    } */
+    .navbar {
+      flex-wrap: nowrap !important;
+    }
+  }
+
+  @media screen and (min-width: 767.2px) and (max-width: 1600px) {
+    .navbar-nav-search {
+      display: none !important;
+    }
+  }
+
+  .d-flex {
+    flex-shrink: 1 !important;
+  }
+
+  .nav-search-box {
+    border-bottom: none;
+    border-top: none;
+    border-left: none;
+    border-right: 1px solid black;
+    border-radius: 0.1rem !important;
+    /* padding: 0.5rem; */
+    background-color: white !important;
+  }
+
+  .navbtn {
+    background-color: #fe424d;
+    border-radius: 50%;
+    border: none;
+    padding: 0.8rem;
+    margin-left: 10px;
+    /* line-height: 30px; */
+  }
+
+  #nav-drop {
+    border-radius: 0.1rem;
+    padding: 0.5rem;
+    border: none;
+    margin-right: 10px;
+  }
+
+  .btn-search {
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 50%;
+    padding: 0.5rem;
+  }
+  .search-inp {
+    border-radius: 5rem;
+  }
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"
+      ><i class="fa-regular fa-compass"></i
+    ></a>
+
+    <!-- navsearch -->
+    <div class="navbar-nav-search">
+      <form method="get" action="/filter/search" type="search" class="d-flex">
+        <input
+          name="location"
+          class="form-control me-2 search-inp"
+          placeholder="search destinations"
+        />
+        <button class="btn btn-search" type="submit" style="margin-right: 3px">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
+    </div>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+      <!-- nav search on small screen size -->
+
+      <!-- nav search box -->
+      <div class="navbar-serachbox-container ms-auto">
+        <form method="get" action="/filter/search" class="d-flex" type="search">
+          <div class="nav-search-container">
+            <input
+              class="nav-search-box form-control me-2"
+              name="location"
+              placeholder="Search destinations"
+            />
+            <select name="category" id="nav-drop">
+              <option value="">Add Filter</option>
+              <option value="house">house</option>
+              <option value="rooms">rooms</option>
+              <option value="iconic city">iconic city</option>
+              <option value="mountains">mountains</option>
+              <option value="castles">castles</option>
+              <option value="amazing pools">amzing pools</option>
+              <option value="farms">farms</option>
+              <option value="flat">flat</option>
+              <option value="hotels">hotels</option>
+              <option value="guest house">guest house</option>
+              <option value="campings">campings</option>
+            </select>
+
+            <button class="btn btn-search navbtn" type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+        <% if (!currUser) { %>
+        <a class="nav-link" href="/signup"><b>sign up</b></a>
+        <a class="nav-link" href="/login"><b>login</b></a>
+        <% } %> <% if (currUser) { %>
+        <a class="nav-link" href="/logout"><b>logout</b></a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  function update() {
+    const input = document.querySelector(".search-inp");
+    if (window.innerWidth <= 425) {
+      input.placeholder = "find places";
+    } else {
+      input.placeholder = "search destinations";
+    }
+  }
+  window.addEventListener("load", update);
+  window.addEventListener("resize", update);
+</script>
